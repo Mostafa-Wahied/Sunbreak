@@ -8,7 +8,7 @@ export const List = ({ places, childClicked, isLoading }) => {
     const [elRefs, setElRefs] = useState([]);
 
     useEffect(() => {
-        setElRefs((refs) => Array(places.length).fill().map((_, i) => refs[i] || createRef()));
+        setElRefs((refs) => Array(places?.length).fill().map((_, i) => refs[i] || createRef()));
     }, [places]);
 
     return (

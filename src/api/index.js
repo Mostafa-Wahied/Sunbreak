@@ -30,12 +30,10 @@ import * as turf from '@turf/turf'
 // }
 
 
-const URL = "https://ridb.recreation.gov/api/v1/facilities?&apikey=faae047e-5eb1-4226-b5ce-465e75e682bc";
-// const URL = "https://developer.nps.gov/api/v1/thingstodo?api_key=3iXj8cG372YDR8zIWRwqMaEYimddiy65PK2dXaMS";
+const URL = `https://ridb.recreation.gov/api/v1/facilities?&apikey=${import.meta.env.VITE_RECREATION_GOV_API_KEY}`;
+// const URL = `https://developer.nps.gov/api/v1/thingstodo?api_key=import.meta.env.VITE_NATIONAL_PARKS_API_KEY`;
 
 export const getPlacesData = async (coordinates) => {
-
-    // const { bottomLeftLongitude, bottomLeftLatitude, topRightLongitude, topRightLatitude } = getBoundingBox(coordinates.lng, coordinates.lat, 0.5)
 
     try {
         const { data: { RECDATA } } = await axios.get(URL, {
@@ -46,12 +44,14 @@ export const getPlacesData = async (coordinates) => {
                 // tr_longitude: topRightLongitude,
                 longitude: coordinates.lng,
                 latitude: coordinates.lat,
-                limit: 50,
-                radius: 50,
+                limit: 250,
+                radius: 100,
             },
         });
         console.log(`This is the lat: ${coordinates.lat}`)
         console.log(`this is the long: ${coordinates.lng}`)
+        console.log(`this is the RECDATA`)
+        console.log(RECDATA);
         return RECDATA;
     } catch (error) {
         console.log(error);

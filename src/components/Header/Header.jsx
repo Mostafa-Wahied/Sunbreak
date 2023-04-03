@@ -2,6 +2,7 @@ import React from 'react'
 import { AppBar, Box, InputBase, Toolbar, Typography } from '@mui/material'
 import { Autocomplete } from '@react-google-maps/api'
 import SearchIcon from '@mui/icons-material/Search';
+import Logo from '../../assets/images/logo.png'
 
 export const Header = () => {
     return (
@@ -9,11 +10,15 @@ export const Header = () => {
             <Toolbar sx={{
                 display: "flex", justifyContent: "space-between", backgroundColor: "#125C13"
             }}>
-                <Typography variant="h6" sx={{
-                    display: { xs: "none", sm: "block" }
-                }}>
-                    Sunbreak
-                </Typography>
+                <Box display={"flex"}>
+                    <img src={Logo} alt="Logo" height="50" />
+                    <Typography variant="h6" sx={{
+                        display: { xs: "none", sm: "block" }, 
+                        alignSelf: "center",
+                    }}>
+                        Sunbreak
+                    </Typography>
+                </Box>
                 <Box display="flex">
                     <Typography variant="h6" sx={{
                         display: { xs: "none", sm: "block" }
@@ -28,8 +33,9 @@ export const Header = () => {
                         '&:hover': { backgroundColor: "#348735" },
                         marginLeft: 0,
                         marginRight: 2,
-                        width: "100%",
-                        marginLeft: 3, width: "auto",
+                        // width: "100%",
+                        marginLeft: 3,
+                        width: "auto",
                     }}>
                         <Box>
                             <SearchIcon sx={{
@@ -48,7 +54,7 @@ export const Header = () => {
                                 padding: "1px 1px 1px 0",
                                 paddingLeft: `calc(3rem + ${1}px)`,
                                 transition: "width 0.5s",
-                                width: "100%",
+                                // width: "100%",
                                 color: "white",
                                 width: { md: "20ch" },
                                 fontSize: "0.9rem",

@@ -11,7 +11,7 @@ export const Map = ({ setCoordinates, setBounds, coordinates, places, setChildCl
             height: '85vh', width: '100%',
         }}>
             <GoogleMapReact
-                bootstrapURLKeys={{ key: 'AIzaSyC9MdkRb7fQM1peZnKTZgyO57zpD8dRm2o' }}
+                bootstrapURLKeys={{ key: import.meta.env.VITE_GOOGLE_MAPS_API_KEY }}
                 defaultCenter={coordinates}
                 center={coordinates}
                 defaultZoom={14}
@@ -28,8 +28,8 @@ export const Map = ({ setCoordinates, setBounds, coordinates, places, setChildCl
                     <Box sx={{
                         position: 'absolute', transform: 'translate(-50%, -50%)', zIndex: 1, '&:hover': { zIndex: 2 },
                     }}
-                        lat={Number(place.FacilityLatitude)}
-                        lng={Number(place.FacilityLongitude)}
+                        lat={Number(place?.FacilityLatitude)}
+                        lng={Number(place?.FacilityLongitude)}
                         key={i}
                     >
                         {
@@ -40,15 +40,15 @@ export const Map = ({ setCoordinates, setBounds, coordinates, places, setChildCl
                                     padding: '10px', display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100px',
                                 }}>
                                     <Typography variant="subtitle2" color="textSecondary" gutterBottom>
-                                        {place.FacilityName}
+                                        {place?.FacilityName}
                                     </Typography>
                                     <img style={{ cursor: 'pointer' }}
                                         src={
-                                            place.MEDIA && place.MEDIA.length
-                                                ? place.MEDIA[0].URL
+                                            place?.MEDIA && place?.MEDIA.length
+                                                ? place?.MEDIA[0].URL
                                                 : 'https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg'
                                         }
-                                        alt={place.FacilityName}
+                                        alt={place?.FacilityName}
                                     />
                                 </Paper>
                             )

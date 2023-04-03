@@ -10,9 +10,12 @@
 
 <body>
   <div id="root"></div>
-  <script async
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9MdkRb7fQM1peZnKTZgyO57zpD8dRm2o&callback=initMap">
-    </script>
+  <!-- Create a separate variable for google maps apikey -->
+  <!-- <script>
+    const googleMapsUrl = `https://maps.googleapis.com/maps/api/js?key=${import.meta.env.VITE_GOOGLE_MAPS_API_KEY}&callback=initMap`;
+  </script> -->
+  <!-- this is google map's script using the variable i created -->
+  <!-- <script async src={googleMapsUrl}></script> -->
   <script type="module" src="/src/main.jsx"></script>
 </body>
 

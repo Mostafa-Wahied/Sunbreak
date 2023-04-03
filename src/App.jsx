@@ -24,7 +24,6 @@ function App() {
     setIsLoading(true);
     getPlacesData(coordinates)
       .then((data) => {
-        console.log(data);
         setPlaces(data);
         setIsLoading(false);
       })
