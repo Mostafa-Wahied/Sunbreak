@@ -13,6 +13,11 @@ function App() {
   const [coordinates, setCoordinates] = useState({});
   const [bounds, setBounds] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [type, setType] = useState("")
+  const [activity, setActivity] = useState()
+  const [activities, setActivities] = useState([])
+  const [facilityTypes, setFacilityTypes] = useState([])
+
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
@@ -26,10 +31,10 @@ function App() {
       .then((data) => {
         setPlaces(data);
         setIsLoading(false);
+        const types = data.map((place) => place.FacilityTypeDescription)
+        setFacilityTypes([...new Set(types)]);
       })
-
-  }, [coordinates, bounds])
-
+  }, [coordinates]);
 
   return (
     <>
@@ -41,6 +46,11 @@ function App() {
             places={places}
             childClicked={childClicked}
             isLoading={isLoading}
+            type={type}
+            setType={setType}
+            activities={activities}
+            setActivities={setActivities}
+            facilityTypes={facilityTypes}
           />
         </Grid>
         <Grid item xs={12} md={8}>

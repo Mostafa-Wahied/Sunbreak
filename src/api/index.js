@@ -58,6 +58,29 @@ export const getPlacesData = async (coordinates) => {
     }
 };
 
+// export const getActivities = async () => {
+//     const URL = `https://ridb.recreation.gov/api/v1/activities?&apikey=${import.meta.env.VITE_RECREATION_GOV_API_KEY}`;
+
+//     try {
+//         const response = await axios.get(URL);
+//         // console.log(response);
+//         // console.log(response.data);
+//         // console.log(response);
+        
+//         const { RECDATA } = response.data;
+        
+//         // Extract the ActivityName values from the RECDATA array
+//         const activities = RECDATA.map((activity) => activity.ActivityName);
+        
+//         // Remove duplicate values and return the result
+//         // console.log(`this is the activities`);
+//         // console.log(activities);
+//         // console.log(`this is the activities`);
+//         return activities;
+//     } catch (error) {
+//         console.log(error);
+//     }
+// };
 
 // To calculate the bottom-left and top-right coordinates of a bounding box for a location with longitude -109.419421087026 and latitude 38.4787588233655, you can use the same approach as in the previous example. Here’s an example using Turf.js:
 
