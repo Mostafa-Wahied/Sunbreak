@@ -1,7 +1,8 @@
-import { CssBaseline, Grid } from '@mui/material'
+import { Box, CssBaseline, Grid } from '@mui/material'
 import { Header } from './components/Header/Header'
 import { List } from './components/List/List'
 import { Map } from './components/Map/Map'
+import "./App.css"
 
 import { getPlacesData, getWeatherData } from './api'
 import { useEffect, useState } from 'react'
@@ -45,7 +46,7 @@ console.log(weatherData);
   }, [bounds]);
 
   return (
-    <>
+    <Box>
       <CssBaseline />
       <Header setCoordinates={setCoordinates} />
       <Grid container spacing={0} style={{ width: '100%' }}>
@@ -73,7 +74,7 @@ console.log(weatherData);
           />
         </Grid>
       </Grid>
-    </>
+    </Box>
   )
 }
 

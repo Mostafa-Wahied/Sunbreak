@@ -60,7 +60,7 @@ const PlaceDetails = ({ place, selected, refProp }) => {
                 ) : (
                     <Box sx={{ backgroundColor: "#616756" }}>
                         <CardMedia
-                            style={{ height: 150, width: 150, margin: 'auto', backgroundColor: '#F4A442' }}
+                            style={{ height: 170, width: 150, margin: 'auto', backgroundColor: '#F4A442' }}
                             image={Logo}
                             title={place?.FacilityName}
                         />
