@@ -20,7 +20,11 @@ export const Map = ({ setCoordinates, setBounds, coordinates, places, setChildCl
                 center={coordinates}
                 defaultZoom={14}
                 margin={[50, 50, 50, 50]}
-                options={''}
+                options={{
+                    disableDefaultUI: true,
+                    zoomControl: true,
+                    // styles: mapStyles, // this is the styling for the map and you can find map styles here: https://snazzymaps.com/. and then copy the style and paste it in the mapStyles variable or file and import it
+                }}
                 onChange={(e) => {
                     setCoordinates({ lat: e.center.lat, lng: e.center.lng });
                     setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
@@ -83,7 +87,7 @@ export const Map = ({ setCoordinates, setBounds, coordinates, places, setChildCl
                     </Box>
                 ))}
             </GoogleMapReact>
-        </Box>
+        </Box >
 
     )
 }
