@@ -12,7 +12,7 @@ export const List = ({ places, childClicked, isLoading, facilityTypes, activitie
     }, [places]);
 
     return (
-        <Box sx={{ padding: "25px" }}>
+        <Box sx={{ padding: "10px" }}>
             <Typography variant="h5">Things to do around you</Typography>
             {
                 isLoading ? (

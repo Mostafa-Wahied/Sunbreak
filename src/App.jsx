@@ -48,7 +48,7 @@ console.log(weatherData);
     <>
       <CssBaseline />
       <Header setCoordinates={setCoordinates} />
-      <Grid container spacing={3} style={{ width: '100%' }}>
+      <Grid container spacing={0} style={{ width: '100%' }}>
         <Grid item xs={12} md={4}>
           <List
             places={places}

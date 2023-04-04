@@ -4,6 +4,9 @@ import EmailIcon from '@mui/icons-material/Email';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Logo from '../../assets/images/logo-bg.png'
+// import Carousel from 'react-material-ui-carousel'
+import Carousel from "nuka-carousel"
+
 
 
 const PlaceDetails = ({ place, selected, refProp }) => {
@@ -22,26 +25,46 @@ const PlaceDetails = ({ place, selected, refProp }) => {
 
     return (
         <Box style={{ paddingRight: '10px' }}>
-            <Card elevation={6}>
+            <Card elevation={6} sx={{ height: "auto" }}>
                 {place?.MEDIA && place?.MEDIA.length ? (
-                    <ImageList sx={{ maxWidth: 550, maxHeight: 400 }} cols={1} variant='masonary'>
+
+                    <Carousel
+                        defaultControlsConfig={{
+                            pagingDotsStyle: {
+                                fill: 'white', // Change the color of the dots here
+                            },
+                        }}
+                    >
                         {place?.MEDIA.map((media) => (
-                            <ImageListItem key={media.URL}>
-                                <img
-                                    src={`${media.URL}?w=164&h=164&fit=crop&auto=format`}
-                                    srcSet={`${media.URL}?w=161&fit=crop&auto=format&dpr=2 2x`}
-                                    alt={media.Title}
-                                    loading="lazy"
-                                />
-                            </ImageListItem>
+                            <CardMedia
+                                style={{ height: 250, width: '100%', backgroundColor: '#F4A442' }}
+                                image={media.URL}
+                                title={place?.FacilityName}
+                            />
                         ))}
-                    </ImageList>
+                    </Carousel>
+
+
+                    // <ImageList sx={{ maxWidth: 550, maxHeight: 300 }} cols={1} variant='masonary'>
+                    //     {place?.MEDIA.map((media) => (
+                    //         <ImageListItem key={media.URL}>
+                    //             <img
+                    //                 src={`${media.URL}?w=164&h=164&fit=crop&auto=format`}
+                    //                 srcSet={`${media.URL}?w=161&fit=crop&auto=format&dpr=2 2x`}
+                    //                 alt={media.Title}
+                    //                 loading="lazy"
+                    //             />
+                    //         </ImageListItem>
+                    //     ))}
+                    // </ImageList>
                 ) : (
-                    <CardMedia
-                        style={{ height: 350 }}
-                        image={Logo}
-                        title={place?.FacilityName}
-                    />
+                    <Box sx={{ backgroundColor: "#616756" }}>
+                        <CardMedia
+                            style={{ height: 150, width: 150, margin: 'auto', backgroundColor: '#F4A442' }}
+                            image={Logo}
+                            title={place?.FacilityName}
+                        />
+                    </Box>
                 )}
                 <CardContent>
                     <Typography gutterBottom variant="h6">{place?.FacilityName}</Typography>
