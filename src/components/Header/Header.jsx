@@ -42,7 +42,6 @@ const onPlaceChanged = () => {
                         borderRadius: "4px",
                         backgroundColor: "#2d762e",
                         '&:hover': { backgroundColor: "#348735" },
-                        marginLeft: 0,
                         marginRight: 2,
                         // width: "100%",
                         marginLeft: 3,
