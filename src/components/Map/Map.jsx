@@ -1,10 +1,14 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react'
-import { Box, Paper, Typography, useMediaQuery } from '@mui/material'
+import { Box, Paper, Tooltip, Typography, useMediaQuery } from '@mui/material'
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 
 export const Map = ({ setCoordinates, setBounds, coordinates, places, setChildClicked, weatherData, setWeatherData }) => {
     const isMobile = useMediaQuery('(min-width:600px)');
+    // to capitalize the first letter of each word in the weather description
+    const capitalize = (str) => {
+        return str.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+    };
 
     return (
         <Box sx={{
@@ -61,11 +65,21 @@ export const Map = ({ setCoordinates, setBounds, coordinates, places, setChildCl
                         key={i}
                         lat={data.coord.Lat}
                         lng={data.coord.Lon}
+
                     >
-                        <img
-                            src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`}
-                            height="70px"
-                        />
+                        <Tooltip
+                            title={
+                                <>
+                                    <div>{data.name}: {data.main.temp}°C</div>
+                                    <div>{capitalize(data.weather[0].description)}</div>
+                                </>
+                            }
+                        >
+                            <img
+                                src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`}
+                                height="70px"
+                            />
+                        </Tooltip>
                     </Box>
                 ))}
             </GoogleMapReact>
