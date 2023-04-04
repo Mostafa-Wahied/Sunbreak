@@ -3,11 +3,12 @@ import { Header } from './components/Header/Header'
 import { List } from './components/List/List'
 import { Map } from './components/Map/Map'
 
-import { getPlacesData } from './api'
+import { getPlacesData, getWeatherData } from './api'
 import { useEffect, useState } from 'react'
 
 function App() {
   const [places, setPlaces] = useState([]);
+  const [weatherData, setWeatherData] = useState([])
   const [childClicked, setChildClicked] = useState(null);
 
   const [coordinates, setCoordinates] = useState({});
@@ -26,20 +27,27 @@ function App() {
   }, [])
 
   useEffect(() => {
-    setIsLoading(true);
-    getPlacesData(coordinates)
-      .then((data) => {
-        setPlaces(data);
-        setIsLoading(false);
-        const types = data.map((place) => place.FacilityTypeDescription)
-        setFacilityTypes([...new Set(types)]);
-      })
-  }, [coordinates]);
+    if (bounds.sw && bounds.ne) {
+      setIsLoading(true);
+
+      getWeatherData(bounds)
+        .then((data) => setWeatherData(data))
+console.log(`this is the weather data`);
+console.log(weatherData);
+      getPlacesData(coordinates)
+        .then((data) => {
+          setPlaces(data);
+          setIsLoading(false);
+          const types = data?.map((place) => place.FacilityTypeDescription)
+          setFacilityTypes([...new Set(types)]);
+        })
+    }
+  }, [bounds]);
 
   return (
     <>
       <CssBaseline />
-      <Header />
+      <Header setCoordinates={setCoordinates} />
       <Grid container spacing={3} style={{ width: '100%' }}>
         <Grid item xs={12} md={4}>
           <List
@@ -60,6 +68,8 @@ function App() {
             setBounds={setBounds}
             coordinates={coordinates}
             places={places}
+            weatherData={weatherData}
+            setWeatherData={setWeatherData}
           />
         </Grid>
       </Grid>

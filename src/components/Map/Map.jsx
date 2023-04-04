@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 import GoogleMapReact from 'google-map-react'
 import { Box, Paper, Typography, useMediaQuery } from '@mui/material'
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 
-export const Map = ({ setCoordinates, setBounds, coordinates, places, setChildClicked }) => {
+export const Map = ({ setCoordinates, setBounds, coordinates, places, setChildClicked, weatherData, setWeatherData }) => {
     const isMobile = useMediaQuery('(min-width:600px)');
 
     return (
@@ -53,6 +53,19 @@ export const Map = ({ setCoordinates, setBounds, coordinates, places, setChildCl
                                 </Paper>
                             )
                         }
+                    </Box>
+                ))}
+
+                {weatherData?.list?.map((data, i) => (
+                    <Box
+                        key={i}
+                        lat={data.coord.Lat}
+                        lng={data.coord.Lon}
+                    >
+                        <img
+                            src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`}
+                            height="70px"
+                        />
                     </Box>
                 ))}
             </GoogleMapReact>
