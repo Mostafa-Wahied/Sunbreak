@@ -2,8 +2,7 @@ import React, { useState, useEffect, createRef } from 'react'
 import { CircularProgress, Grid, Typography, InputLabel, MenuItem, FormControl, Select, Box } from '@mui/material'
 import PlaceDetails from "../PlaceDetails/PlaceDetails"
 
-export const List = ({ places, childClicked, isLoading, facilityTypes, activities }) => {
-    const [activity, setActivity] = useState()
+export const List = ({ places, childClicked, isLoading, facilityTypes }) => {
     const [type, setType] = useState("")
     const [elRefs, setElRefs] = useState([]);
 
@@ -13,7 +12,8 @@ export const List = ({ places, childClicked, isLoading, facilityTypes, activitie
 
     return (
         <Box sx={{ padding: "10px" }}>
-            <Typography variant="h5" sx={{ fontFamily: "Poppins"}}>Things to do around you</Typography>
+            <Typography variant="h5">Find your next outdoor activity</Typography>
+            <Typography variant="subtitle1">And see in realtime the weather of each location</Typography>
             {
                 isLoading ? (
                     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '75vh' }}>

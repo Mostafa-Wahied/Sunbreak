@@ -1,13 +1,10 @@
 import React, { useState } from 'react'
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Chip, Collapse, ImageList, ImageListItem, Typography } from '@mui/material';
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Chip, Typography } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Logo from '../../assets/images/logo-bg.png'
 // import Carousel from 'react-material-ui-carousel'
 import Carousel from "nuka-carousel"
-
-
 
 const PlaceDetails = ({ place, selected, refProp }) => {
     const [open, setOpen] = React.useState(false);
@@ -64,7 +61,7 @@ const PlaceDetails = ({ place, selected, refProp }) => {
                         {filteredDescription && (
                             <Typography variant='subtitle2' color={"#5b5b5b"} sx={{ fontSize: "0.8rem" }}>
                                 {open ? filteredDescription : `${filteredDescription.slice(0, 100)}...`}
-                                <Button onClick={handleClick} sx={{fontSize: "0.7rem"}}>
+                                <Button onClick={handleClick} sx={{ fontSize: "0.7rem" }}>
                                     {open ? 'Show less' : 'Show more'}
                                 </Button>
                             </Typography>
@@ -93,12 +90,6 @@ const PlaceDetails = ({ place, selected, refProp }) => {
                             </Typography>
                         )}
                     </Box>
-                    {/* <Button size="small" color="primary" onClick={() => window.open(place?.web_url, '_blank')}>
-                    Trip Advisor
-                </Button>
-                <Button size="small" color="primary" onClick={() => window.open(place?.website, '_blank')}>
-                    Website
-                </Button> */}
                 </CardActions>
             </Card>
         </Box>

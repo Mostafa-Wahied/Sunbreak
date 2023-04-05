@@ -17,8 +17,6 @@ function App() {
   const [bounds, setBounds] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [type, setType] = useState("")
-  const [activity, setActivity] = useState()
-  const [activities, setActivities] = useState([])
   const [facilityTypes, setFacilityTypes] = useState([])
 
   // checking if the user has allowed location access
@@ -70,8 +68,6 @@ function App() {
             isLoading={isLoading}
             type={type}
             setType={setType}
-            activities={activities}
-            setActivities={setActivities}
             facilityTypes={facilityTypes}
           />
         </Grid>
@@ -87,7 +83,6 @@ function App() {
           />
         </Grid>
       </Grid>
-
     </Box>
   )
 }
