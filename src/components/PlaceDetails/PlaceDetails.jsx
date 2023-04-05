@@ -63,7 +63,7 @@ const PlaceDetails = ({ place, selected, refProp }) => {
                     <Box display="flex" flexDirection="column" my={2}>
                         {filteredDescription && (
                             <Typography variant='subtitle2' color={"#5b5b5b"} sx={{ fontSize: "0.8rem" }}>
-                                {open ? filteredDescription : `${filteredDescription.slice(0, 50)}...`}
+                                {open ? filteredDescription : `${filteredDescription.slice(0, 100)}...`}
                                 <Button onClick={handleClick} sx={{fontSize: "0.7rem"}}>
                                     {open ? 'Show less' : 'Show more'}
                                 </Button>

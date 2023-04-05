@@ -45,7 +45,8 @@ export const Map = ({ setCoordinates, setBounds, coordinates, places, setChildCl
                                 <LocationOnOutlinedIcon color="primary" fontSize="large" />
                             ) : (
                                 <Paper elevation={3} sx={{
-                                    padding: '10px', display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100px',
+                                    padding: '10px', display: 'flex', flexDirection: 'column',
+                                    justifyContent: 'center', width: '100px',
                                 }}>
                                     <Typography variant="subtitle2" color="textSecondary" gutterBottom>
                                         {place?.FacilityName}
