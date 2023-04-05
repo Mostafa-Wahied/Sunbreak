@@ -39,24 +39,6 @@ export const List = ({ places, childClicked, isLoading, facilityTypes, activitie
                             </Select>
                         </FormControl>
 
-                        {/* <FormControl size="small" sx={{ m: 1, minWidth: 120, mb: '30px' }}>
-                            <InputLabel id="activityInput">Activity</InputLabel>
-                            <Select
-                                labelId="activityInput"
-                                id="activityInput"
-                                label="Activity"
-                                value={activity}
-                                onChange={(e) => setActivity(e.target.value)}
-                            >
-                                <MenuItem value="">All</MenuItem>
-                                {activities.map((activity) => (
-                                    <MenuItem key={activity} value={activity}>
-                                        {activity}
-                                    </MenuItem>
-                                ))}
-                            </Select>
-                        </FormControl> */}
-
                         <Grid
                             container
                             spacing={3}
@@ -69,9 +51,6 @@ export const List = ({ places, childClicked, isLoading, facilityTypes, activitie
                                 ?.filter(
                                     (place) =>
                                         (!type || place.FacilityTypeDescription === type) 
-                                        // this is the activities filter
-                                        // &&
-                                        // (!activity || place.ACTIVITY.some((a) => a.ActivityName === activity))
                                 )
                                 .map((place, i) => (
                                     <Grid ref={elRefs[i]} key={i} item xs={12}>

@@ -20,7 +20,7 @@ export const Header = ({ setCoordinates }) => {
     return (
         <AppBar position="static">
             <Toolbar sx={{
-                display: "flex", justifyContent: "space-between", backgroundColor: "#125C13"
+                display: "flex", justifyContent: "space-between", backgroundColor: "#616756"
             }}>
                 <Link to="/" style={{ textDecoration: 'none', color: "#fff" }}>
                     <Box display={"flex"}>
@@ -43,8 +43,8 @@ export const Header = ({ setCoordinates }) => {
                         <Box sx={{
                             position: "relative",
                             borderRadius: "4px",
-                            backgroundColor: "#2d762e",
-                            '&:hover': { backgroundColor: "#348735" },
+                            backgroundColor: "#42463B",
+                            '&:hover': { backgroundColor: "#777E6A" },
                             marginRight: 2,
                             // width: "100%",
                             marginLeft: 3,
