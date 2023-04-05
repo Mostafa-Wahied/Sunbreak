@@ -50,7 +50,7 @@ export const List = ({ places, childClicked, isLoading, facilityTypes }) => {
                             {places
                                 ?.filter(
                                     (place) =>
-                                        (!type || place.FacilityTypeDescription === type) 
+                                        (!type || place.FacilityTypeDescription === type)
                                 )
                                 .map((place, i) => (
                                     <Grid ref={elRefs[i]} key={i} item xs={12}>

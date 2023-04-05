@@ -35,18 +35,17 @@ export const getWeatherData = async (bounds) => {
     }
 };
 
-// export const getWeatherData = async (coordinates) => {
-// const URL = `https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.lat}&lon=${coordinates.lng}&appid=${import.meta.env.VITE_OPEN_WEATHER_API_KEY}`
-// // const URL = `api.openweathermap.org/data/2.5/forecast/daily?lat=44.34&lon=10.99&cnt=7&appid=${import.meta.env.VITE_OPEN_WEATHER_API_KEY}`
-//     try {
-//         const { data } = await axios.get(URL);
-//         // console.log(`this is the weather data`);
-//         // // console.log(data);
-//         // console.log(data);
-//         return data;
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
+export const getPlaceWeatherData = async (coordinates) => {
+    const URL = `https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.lat}&lon=${coordinates.lng}&appid=${import.meta.env.VITE_OPEN_WEATHER_API_KEY}`
+    // // const URL = `api.openweathermap.org/data/2.5/forecast/daily?lat=44.34&lon=10.99&cnt=7&appid=${import.meta.env.VITE_OPEN_WEATHER_API_KEY}`
+    try {
+        const { data } = await axios.get(URL);
+        console.log(`this is the place weather data`);
+        console.log(data);
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 
