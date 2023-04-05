@@ -1,4 +1,4 @@
-import { Box, CssBaseline, Grid } from '@mui/material'
+import { Box, CssBaseline, Grid, Typography } from '@mui/material'
 import { Header } from './components/Header/Header'
 import { List } from './components/List/List'
 import { Map } from './components/Map/Map'
@@ -8,6 +8,7 @@ import { getPlacesData, getWeatherData } from './api'
 import { useEffect, useState } from 'react'
 
 function App() {
+  const [locationAllowed, setLocationAllowed] = useState(false);
   const [places, setPlaces] = useState([]);
   const [weatherData, setWeatherData] = useState([])
   const [childClicked, setChildClicked] = useState(null);
@@ -20,6 +21,13 @@ function App() {
   const [activities, setActivities] = useState([])
   const [facilityTypes, setFacilityTypes] = useState([])
 
+  // checking if the user has allowed location access
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      () => setLocationAllowed(true),
+      () => setLocationAllowed(false)
+    );
+  }, []);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
@@ -33,8 +41,8 @@ function App() {
 
       getWeatherData(bounds)
         .then((data) => setWeatherData(data))
-console.log(`this is the weather data`);
-console.log(weatherData);
+      console.log(`this is the weather data`);
+      console.log(weatherData);
       getPlacesData(coordinates)
         .then((data) => {
           setPlaces(data);
@@ -49,6 +57,11 @@ console.log(weatherData);
     <Box>
       <CssBaseline />
       <Header setCoordinates={setCoordinates} />
+      {!locationAllowed && (
+          <Typography sx={{paddingY: {xs: 15}, position: "absolute", px: 5}}>
+            Please allow access to your location to see the data.
+          </Typography>
+        )}
       <Grid container spacing={0} style={{ width: '100%' }}>
         <Grid item xs={12} md={4}>
           <List
@@ -62,6 +75,9 @@ console.log(weatherData);
             facilityTypes={facilityTypes}
           />
         </Grid>
+
+
+
         <Grid item xs={12} md={8}>
           <Map
             setChildClicked={setChildClicked}
@@ -74,6 +90,7 @@ console.log(weatherData);
           />
         </Grid>
       </Grid>
+
     </Box>
   )
 }
