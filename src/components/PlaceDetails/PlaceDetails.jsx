@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Chip, ImageList, ImageListItem, Typography } from '@mui/material';
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Chip, Collapse, ImageList, ImageListItem, Typography } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -10,18 +10,19 @@ import Carousel from "nuka-carousel"
 
 
 const PlaceDetails = ({ place, selected, refProp }) => {
-    const [showFullDescription, setShowFullDescription] = useState(false);
+    const [open, setOpen] = React.useState(false);
 
     // selected is a boolean value that is passed in from the List component
     // if the place is selected, then the card will be highlighted
     if (selected) refProp?.current?.scrollIntoView({ behavior: "smooth", block: "start" });
 
-    // get the first 100 characters of the description and replace any html tags with an empty string
-    const description = place?.FacilityDescription.length > 100 && !showFullDescription
-        ? `${place?.FacilityDescription.slice(0, 100).replace(/<[^>]+>/g, '')}...`
-        : place?.FacilityDescription.replace(/<[^>]+>/g, '');
+    // replace any html tags with an empty string
+    const filteredDescription = place?.FacilityDescription?.replace(/<[^>]*>/g, '');
 
-    const handleShowMore = () => setShowFullDescription(true);
+
+    const handleClick = () => {
+        setOpen(!open);
+    };
 
     return (
         <Box style={{ paddingRight: '10px' }}>
@@ -44,19 +45,6 @@ const PlaceDetails = ({ place, selected, refProp }) => {
                         ))}
                     </Carousel>
 
-
-                    // <ImageList sx={{ maxWidth: 550, maxHeight: 300 }} cols={1} variant='masonary'>
-                    //     {place?.MEDIA.map((media) => (
-                    //         <ImageListItem key={media.URL}>
-                    //             <img
-                    //                 src={`${media.URL}?w=164&h=164&fit=crop&auto=format`}
-                    //                 srcSet={`${media.URL}?w=161&fit=crop&auto=format&dpr=2 2x`}
-                    //                 alt={media.Title}
-                    //                 loading="lazy"
-                    //             />
-                    //         </ImageListItem>
-                    //     ))}
-                    // </ImageList>
                 ) : (
                     <Box sx={{ backgroundColor: "#616756" }}>
                         <CardMedia
@@ -67,26 +55,25 @@ const PlaceDetails = ({ place, selected, refProp }) => {
                     </Box>
                 )}
                 <CardContent>
-                    <Typography gutterBottom variant="h6">{place?.FacilityName}</Typography>
-                    <Chip size="small" label={place?.FacilityTypeDescription} sx={{ backgroundColor: "#F4A442", color: "white" }} />
+                    <Typography gutterBottom variant="h6" sx={{ fontSize: "1rem" }}>{place?.FacilityName}</Typography>
+
+                    <Chip size="small" label={place?.FacilityTypeDescription}
+                        sx={{ backgroundColor: "#F4A442", color: "white" }} />
+
                     <Box display="flex" flexDirection="column" my={2}>
-                        <Typography variant='subtitle2' color={"#5b5b5b"}>
-                            {description}
-                        </Typography>
-                        {place?.FacilityDescription.length > 100 && !showFullDescription && (
-                            <Box mt={0}>
-                                <Typography variant='overline' onClick={handleShowMore} style={{ cursor: 'pointer' }}>
-                                    <Box display="flex" alignItems="center">
-                                        Show more
-                                        <KeyboardArrowDownIcon sx={{ width: 20, mb: "3px" }} />
-                                    </Box>
-                                </Typography>
-                            </Box>
+                        {filteredDescription && (
+                            <Typography variant='subtitle2' color={"#5b5b5b"} sx={{ fontSize: "0.8rem" }}>
+                                {open ? filteredDescription : `${filteredDescription.slice(0, 50)}...`}
+                                <Button onClick={handleClick} sx={{fontSize: "0.7rem"}}>
+                                    {open ? 'Show less' : 'Show more'}
+                                </Button>
+                            </Typography>
                         )}
                     </Box>
-                    <Typography gutterBottom variant="subtitle2">{place?.FACILITYADDRESS[0]}</Typography>
 
+                    <Typography gutterBottom variant="subtitle2">{place?.FACILITYADDRESS[0]}</Typography>
                 </CardContent>
+
                 <CardActions>
                     <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: "space-between" }}>
 

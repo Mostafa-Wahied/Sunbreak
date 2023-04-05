@@ -13,7 +13,7 @@ export const List = ({ places, childClicked, isLoading, facilityTypes, activitie
 
     return (
         <Box sx={{ padding: "10px" }}>
-            <Typography variant="h5">Things to do around you</Typography>
+            <Typography variant="h5" sx={{ fontFamily: "Poppins"}}>Things to do around you</Typography>
             {
                 isLoading ? (
                     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '75vh' }}>
