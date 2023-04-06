@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Chip, Tooltip, Typography } from '@mui/material';
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Chip, Grid, Tooltip, Typography } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import Logo from '../../assets/images/logo-bg.png'
@@ -68,7 +68,36 @@ const PlaceDetails = ({ place, selected, refProp }) => {
                     </Box>
                 )}
                 <CardContent>
-                    <Typography gutterBottom variant="h6" sx={{ fontSize: "1rem" }}>{place?.FacilityName}</Typography>
+                    <Grid container spacing={5}>
+                        <Grid item xs={12} sm>
+                            <Typography gutterBottom variant="h6" sx={{ fontSize: "1rem" }}>{place?.FacilityName}</Typography>
+                        </Grid>
+                        <Grid item>
+                            {/* showing each location's weather data */}
+                            {placeWeatherData && (
+                                <Box sx={{ display: "flex", justifyContent: "end" }}>
+                                    <Tooltip
+                                        title={
+                                            <>
+                                                <div>
+                                                    {placeWeatherData.name}: {placeWeatherData.main.temp}°C
+                                                </div>
+                                                <div>
+                                                    {capitalize(placeWeatherData.weather[0].description)}
+                                                </div>
+                                            </>
+                                        }
+                                    >
+                                        <img
+                                            src={`http://openweathermap.org/img/w/${placeWeatherData.weather[0].icon}.png`}
+                                            height="60px"
+                                            style={{ position: "relative", bottom: "10px" }}
+                                        />
+                                    </Tooltip>
+                                </Box>
+                            )}
+                        </Grid>
+                    </Grid>
 
                     <Chip size="small" label={place?.FacilityTypeDescription}
                         sx={{ backgroundColor: "#F4A442", color: "white" }} />
@@ -83,28 +112,6 @@ const PlaceDetails = ({ place, selected, refProp }) => {
                             </Typography>
                         )}
                     </Box>
-                    {/* showing each location's weather data */}
-                    {placeWeatherData && (
-                        <Box sx={{ display: "flex", justifyContent: "end" }}>
-                            <Tooltip
-                                title={
-                                    <>
-                                        <div>
-                                            {placeWeatherData.name}: {placeWeatherData.main.temp}°C
-                                        </div>
-                                        <div>
-                                            {capitalize(placeWeatherData.weather[0].description)}
-                                        </div>
-                                    </>
-                                }
-                            >
-                                <img
-                                    src={`http://openweathermap.org/img/w/${placeWeatherData.weather[0].icon}.png`}
-                                    height="60px"
-                                />
-                            </Tooltip>
-                        </Box>
-                    )}
                 </CardContent>
 
                 <CardActions>
